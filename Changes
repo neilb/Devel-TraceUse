@@ -1,5 +1,10 @@
 Revision history for Devel-TraceUse
 
+2.093 Thu Jun 26 2014
+    - fixed the test script to properly deal with sitecustomize and proxies
+      in all possible combinations (thanks a lot to Christan Walde (MITHALDU)
+      for his help with testing under Windows!)
+
 2.092 Thu Apr  3 2014
     - auto-dereferencing only works since 5.14
     - move the xt/ tests back in t/, guarded by RELEASE_TESTING
