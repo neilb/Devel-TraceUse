@@ -1,12 +1,14 @@
-package # hide package name from indexer
-  DB;
-
-# allow -d:TraceUse loading with this little C++-style no-op
-sub DB {}
-
 package Devel::TraceUse;
 
 our $VERSION = '2.093';
+
+# detect being loaded via -d:TraceUse and disable the debugger features we
+# don't need. better names for evals (0x100) and anon subs (0x200).
+BEGIN {
+    if (!defined &DB::DB && $^P & 0x02) {
+        $^P = 0x100 | 0x200;
+    }
+}
 
 BEGIN
 {
