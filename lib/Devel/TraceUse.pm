@@ -1,7 +1,5 @@
 package Devel::TraceUse;
 
-our $VERSION = '2.093';
-
 # detect being loaded via -d:TraceUse and disable the debugger features we
 # don't need. better names for evals (0x100) and anon subs (0x200).
 BEGIN {
