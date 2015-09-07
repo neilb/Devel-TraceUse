@@ -6,8 +6,6 @@ sub DB {}
 
 package Devel::TraceUse;
 
-our $VERSION = '2.093';
-
 BEGIN
 {
     unshift @INC, \&trace_use unless grep { "$_" eq \&trace_use . '' } @INC;
