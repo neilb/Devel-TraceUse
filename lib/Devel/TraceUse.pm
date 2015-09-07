@@ -432,7 +432,7 @@ L<http://search.cpan.org/dist/Devel-TraceUse>
 
 Copyright 2006 chromatic, most rights reserved.
 
-Copyright 2010-2012 Philippe Bruhat (BooK), for the rewrite.
+Copyright 2010-2015 Philippe Bruhat (BooK), for the rewrite.
 
 =head1 LICENSE
 
