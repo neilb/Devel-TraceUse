@@ -1,6 +1,8 @@
 Revision history for Devel-TraceUse
 
 2.094 2015-09-?? BOOK
+    - Added SEE ALSO section with a discussion of the main modules
+      on CPAN for determining dependencies.
     - Tweaked formatting of this file as per CPAN::Changes::Spec,
       in the process ensuring all dates are UTC (like CPAN & PAUSE).
 

@@ -373,6 +373,97 @@ the current directory.
 
 =back
 
+=head1 SEE ALSO
+
+There are plenty of modules on CPAN for getting a list of your code's
+dependencies. They fall into three general classes:
+
+=over 4
+
+=item 1. Those that tell you what modules were actually loaded at
+run-time, like C<Devel-TraceUse>, through introspection.
+This is often done by looking at C<%INC>, but other approaches
+include over-riding the C<require> built-in, or adding a coderef
+to the head of C<@INC> (see <perldoc require|http://perldoc.perl.org/functions/require.html>
+for more details of that approach).
+This may not give you the full list of dependencies,
+because different modules may be loaded depended on
+the path taken through the code.
+
+=item 2. Those that parse the code, to determine dependencies.
+This may catch some dependencies missed by the previous category,
+but in turn may miss modules that are dynamically loaded, or where
+the code doesn't match the regexps / parsing techniques used to find
+C<use>, C<require> and friends.
+
+=item 3. Those that look at the declared dependencies in distributions'
+metadata files (C<META.yml> and C<META.json>).
+
+=back
+
+=head2 Introspectors
+
+L<App::FatPacker::Trace> and L<Devel::Dependencies>
+just gives a flat list of dependencies.
+L<Devel::VersionDump> is similar, but also displays the version of each module found.
+
+Instead of listing the names of modules loaded, L<Devel::Loaded> lists
+the full paths to the modules. This might help you spot issues caused by
+the same module being in multiple directories on your C<@INC> path, I guess.
+
+L<Devel::Modlist> prints a table of the modules used, and the version
+of the module installed (I<not> the version that was specified when C<use>ing
+the module). It can also map modules to CPAN distributions, and list the
+distributions you're dependent on.
+
+L<Devel::TraceDeps> overrides the C<do> and C<require> built-ins,
+so it can get finer-grained information about which modules were used
+by which module. It generates information about the dependencies,
+which you can then process with L<Devel::TraceDeps::Scan>.
+
+L<Devel::TraceLoad> also overrides C<require>, but it doesn't override C<do>,
+so it might miss some dependencies in older code.
+
+L<Module::PrintUsed> looks at C<%INC> to identify dependencies, and prints a table
+with module name, version, and the local path where it was loaded from.
+
+=head2 Parsers
+
+L<Module::Dependency::Grapher> parses locally installed modules to
+determine the full dependency graph, which it can then dump as ASCII or
+one of several graph formats.
+
+L<Module::Extract::Use> uses L<PPI> to parse a source file and extract
+modules used. It only reports the first level of dependencies.
+
+L<Module::Used> also uses L<PPI> and provides a nice clean API, also only
+providing the first level of dependencies.
+
+L<Perl::PrereqScanner> is yet another PPI-based scanner, but is probably the best
+of the lot. L<App::PrereqGrapher> uses C<Perl::PrereqScanner> to recursively
+identify dependencies, then generate a graph in a number of formats;
+the L<prereq-grapher|https://metacpan.org/pod/distribution/App-PrereqGrapher/bin/prereq-grapher>
+provides a command-line interface to all of that.
+
+L<Module::ExtractUse> (not to be confused with the previous module!)
+uses L<Parse::RecDescent> to parse perl files looking for C<use> and C<require>
+statements. It doesn't recurse, so you just get the first level of dependencies.
+
+
+=head2 Metadata spelunkers
+
+L<CPAN::FindDependencies> fetches C<META.yml> or C<Makefile.PL> files
+from L<search.cpan.org|http://search.cpan.org>, so it takes a while to run.
+
+L<Dist::Requires> looks at the tarball for a module (or the extracted directory structure)
+and determines the immediate dependencies. It doesn't find the next level of dependencies
+and beyond, which L<CPAN::FindDependencies> does.
+
+L<Module::Depends::Tree> uses L<CPANPLUS> to grab tarballs for distributions then
+extracts dependency information from metadata files.
+It includes a front-end script called C<deptree>.
+
+
 =head1 AUTHORS
 
 chromatic, C<< <chromatic@wgz.org> >>
