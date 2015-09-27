@@ -1,62 +1,66 @@
 Revision history for Devel-TraceUse
 
-2.093 Thu Jun 26 2014
+2.094 2015-09-?? BOOK
+    - Tweaked formatting of this file as per CPAN::Changes::Spec,
+      in the process ensuring all dates are UTC (like CPAN & PAUSE).
+
+2.093 2014-06-26 BOOK
     - fixed the test script to properly deal with sitecustomize and proxies
       in all possible combinations (thanks a lot to Christan Walde (MITHALDU)
       for his help with testing under Windows!)
 
-2.092 Thu Apr  3 2014
+2.092 2014-04-03 BOOK
     - auto-dereferencing only works since 5.14
     - move the xt/ tests back in t/, guarded by RELEASE_TESTING
 
-2.091 Sat Mar 29 2014
+2.091 2014-03-29 BOOK
     - documentation fixes (thanks to Ioan Rogers (IOANR))
     - test fixes (related to Module::CoreList)
 
-2.09 Sat Feb 16 2013
+2.09 2013-02-16 BOOK
     - added a proxy-reporting feature, that lists modules/subroutines
       found to load other modules --but no change to the tree output yet--
       (thanks to Olivier Mengué (DOLMEN))
 
-2.08 Thu Sep 13 2012
+2.08 2012-09-13 BOOK
     - fixed the module's encoding to match the =encoding POD directive
 
-2.07 Thu Sep 13 2012
+2.07 2012-09-13 BOOK
     - Added support for "perl -c": dump tree at CHECK phase if -c is set
       (contributed by Olivier Mengué (DOLMEN))
 
-2.06 Sun Jan 15 00:44:13 CET 2012
+2.06 2012-01-14 BOOK
     No code change, but:
     - More thoroughly remove @INC from the error output
     - do not open output test files as utf8
     - fix a warning when using a dev version of Module::CoreList
 
-2.05 Mon Apr 18 10:02:08 CEST 2011
+2.05 2011-04-18 BOOK
     - new 'output' option to redirect TraceUse result to a file
       (fully implemented by Olivier Mengué (DOLMEN) at the Perl QA
       Hackathon 2011)
 
-2.04 Sat Apr 16 13:57:19 CEST 2011
+2.04 2011-04-16 BOOK
     - use ${"$package\::VERSION"} instead of $package->VERSION to
       avoid the validation in ->VERSION to choke on modules using
       base.pm (RT #65284)
 
-2.03 Wed Sep 22 01:15:40 CEST 2010
+2.03 2010-09-21 BOOK
     - The 'hidecore' option will hide core modules in the output
       (initial patch by David Leadbeater)
     - moved author tests to xt/
 
-2.02 Wed Jul  7 17:41:16 CEST 2010
+2.02 2010-07-07 BOOK
     - Added the module version (if available) to the output
     - Improved test suite for Win32 and sitecustomize.pl
 
-2.01 Tue May 11 09:38:20 CEST 2010
+2.01 2010-05-11 BOOK
     No code change, but:
     - improved test suite to work with Win32 and sitecustomize.pl
       (many thanks to Apocalypse (APOCAL) for Win32 testing)
     - work around search.cpan.org indexing
 
-2.00 Thu Mar 25 23:17:02 CET 2010
+2.00 2010-03-25 BOOK
     Complete rewrite by Philippe Bruhat (BooK):
     - build a more correct load tree, including modules loaded at runtime
     - report failures to load a module
@@ -64,5 +68,5 @@ Revision history for Devel-TraceUse
     - do not compute compilation time (it was wrong anyway)
     - extensive test suite
 
-1.00 Tue Jul 11 04:45:53 UTC 2006 (chromatic)
-	First version, released on an unsuspecting world.
+1.00 2006-07-11 CHROMATIC
+    - First version, released on an unsuspecting world.
